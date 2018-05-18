@@ -7,7 +7,9 @@ import scala.collection.AbstractIterator
 class IteratorMapIsLazy {
 
   @Test def mapIsLazyUsingSpyFrom(): Unit = {
-    val it = spy(Iterator.from(1))
+    val i0 = Iterator.from(0)
+    i0.next()
+    val it = spy(i0)
     verify(it, never).next() // FIXME ***nondeterministic*** NPE on Linux but not MacOS
   }
 }
